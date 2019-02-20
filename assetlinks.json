@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.mygdx.game",
+    "sha256_cert_fingerprints":
+    ["87:84:B4:A5:58:26:1A:7B:CF:A8:72:F9:63:F5:8B:19:90:64:DE:C0:59:E7:BD:74:F4:8D:23:23:CF:12:8A:E7"]
+  }
+}]
