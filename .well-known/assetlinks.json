@@ -1,9 +1,0 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "io.github.tegocraft.enkripsi",
-    "sha256_cert_fingerprints":
-    ["22:AA:45:B4:3F:25:10:BF:48:01:63:59:73:59:4F:AF:E0:79:67:DE:47:58:E4:22:58:1F:E0:11:68:5C:E1:BD"]
-  }
-}]
