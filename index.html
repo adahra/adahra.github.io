@@ -18,7 +18,6 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
    MA 02110-1301, USA.
    
-   
 -->
 
 <!DOCTYPE html>
@@ -29,50 +28,173 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adnanto A.R. - Personal Webpage</title>
     <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-light: #1a1a1a;
+            --text: #e0e0e0;
+            --accent: #61dafb;
+            --card: #151515;
+            --link: #4da6ff;
+            --link-hover: #80cfff;
+            --border: #333;
+        }
+
         body {
-            background-color: black;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            margin: 20px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        main {
+            max-width: 900px;
+            width: 100%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            overflow: hidden;
+            padding: 2rem;
         }
 
         header {
             text-align: center;
-            padding: 20px;
-        }
-
-        section {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
         }
 
         h1 {
-            color: #61dafb; /* Flutter blue */
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #bbb;
+            margin: 0.5rem 0;
+        }
+
+        .intro {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .intro p {
+            background: var(--bg-light);
+            border-left: 3px solid var(--accent);
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            margin: 0;
+            flex: 1 300px;
+            font-size: 1rem;
+        }
+
+        h2 {
+            margin-top: 2rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        li {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        p strong { color: var(--accent); }
+
+        a {
+            color: var(--link);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover { color: var(--link-hover); }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .intro { flex-direction: column; }
+            h1 { font-size: 2rem; }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>Adnanto A.R.</h1>
-        <p>Linux Fanboy | Flutter Developer | Mobile Developer</p>
-    </header>
+    <main>
+        <header>
+            <h1>Adnanto A.R.</h1>
+            <p class="subtitle">Linux Fanboy | Flutter Developer | Mobile Developer</p>
+            <div class="intro">
+                <p>👋 Hi, I'm Adnanto — Linux enthusiast, Flutter developer, and mobile apps craftsperson.</p>
+                <p>📍 Based in Indonesia, building cross-platform mobile experiences with Dart & Flutter.</p>
+                <p>💡 Passionate about open source, performance, and clean UI.</p>
+            </div>
+        </header>
 
-    <section>
-        <h2>About Me</h2>
-        <p>
-            Hello! I'm a passionate Linux enthusiast and a skilled Flutter Developer with a keen interest in mobile development.
-            This webpage serves as an information hub about me, my skills, and my experiences.
-        </p>
+        <section>
+            <h2>Skills</h2>
+            <ul>
+                <li>Flutter (Dart) – Cross‑platform mobile apps</li>
+                <li>Linux system administration & scripting</li>
+                <li>REST APIs & GraphQL integration</li>
+                <li>Git, CI/CD (GitHub Actions)</li>
+                <li>TypeScript/JavaScript (frontend tooling)</li>
+            </ul>
 
-        <!-- Add more sections or details about yourself as needed -->
+            <h2>Experience</h2>
+            <p><strong>Flutter Developer</strong> (contract) — 2020‑2024<br>Built production‑grade Android/iOS apps, automated builds, and contributed to open source Flutter tools.</p>
 
-        <h2>Contact</h2>
-        <p>Email: adnantoa@gmail.com</p>
-        <p>LinkedIn: <a href="https://id.linkedin.com/in/adnanto-ahmad-b1a27076" target="_blank">LinkedIn Profile</a></p>
-        <p>GitHub: <a href="https://github.com/adahra" target="_blank">GitHub Profile</a></p>
-    </section>
+            <h2>Projects</h2>
+            <p>This site — built with Hugo (v0.73.0) + TACHYONS CSS + Webpack for asset bundling.</p>
+            <p>Personal portfolio, blog posts, and mobile dev resources.</p>
+
+            <h2>Let's Connect</h2>
+            <p>Email: <a href="mailto:adnantoa@gmail.com">adnantoa@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://id.linkedin.com/in/adnanto-ahmad-b1a27076" target="_blank">LinkedIn Profile</a></p>
+            <p>GitHub: <a href="https://github.com/adahra" target="_blank">GitHub Profile</a></p>
+            <p>Blog: <a href="https://adahra.github.io/posts/">Posts & Articles</a></p>
+        </section>
+
+        <footer>
+            © 2024 Adnanto A.R. | Built with ❤️ using Hugo + TACHYONS
+        </footer>
+    </main>
 </body>
 
 </html>
