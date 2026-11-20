@@ -28,7 +28,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adnanto A.R. - Personal Webpage</title>
     <style>
-        :root {
             --bg: #0a0a0a;
             --bg-light: #1a1a1a;
             --text: #e0e0e0;
@@ -37,7 +36,14 @@
             --link: #4da6ff;
             --link-hover: #80cfff;
             --border: #333;
-        }
+            --hero-gradient: linear-gradient(135deg, #61dafb 0%, #0a84ff 100%);
+            --hero-overlay: rgba(10, 10, 10, 0.7);
+            --hero-text-gradient: linear-gradient(120deg, #61dafb, #4da6ff, #80cfff);
+            --btn-primary: #61dafb;
+            --btn-primary-hover: #4da6ff;
+            --btn-secondary: transparent;
+            --btn-secondary-border: #61dafb;
+            --hero-height: 400px;
 
         body {
             background: var(--bg);
@@ -68,7 +74,6 @@
             border-bottom: 1px solid var(--border);
             margin-bottom: 2rem;
         }
-
         h1 {
             font-size: 2.5rem;
             margin: 0.5rem 0;
@@ -121,12 +126,31 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
-
+        
+        li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--hero-text-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        li:hover::before {
+            opacity: 1;
+        }
+        
         li:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(97, 218, 251, 0.2);
+            border-color: rgba(97, 218, 251, 0.3);
         }
 
         p strong { color: var(--accent); }
@@ -148,9 +172,243 @@
             padding-top: 1.5rem;
         }
 
+
+
         @media (max-width: 600px) {
             .intro { flex-direction: column; }
             h1 { font-size: 2rem; }
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .hero-description { font-size: 1rem; }
+            .btn { padding: 0.7rem 1.5rem; }
+        }
+        
+        .hero {
+            height: var(--hero-height);
+            background: var(--hero-gradient);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--hero-overlay);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+            background: var(--hero-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #a0a0a0;
+            margin: 1rem 0;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            color: #c0c0c0;
+            margin: 1.5rem 0 2rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: var(--btn-primary);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 4px 15px rgba(97, 218, 251, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: var(--btn-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(97, 218, 251, 0.5);
+        }
+        
+        .btn-secondary {
+            background: var(--btn-secondary);
+            color: var(--btn-secondary-border);
+            border: 2px solid var(--btn-secondary-border);
+            backdrop-filter: blur(5px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(97, 218, 251, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(97, 218, 251, 0.2);
+        }
+        
+        .scroll-indicator {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+        
+        .scroll-arrow {
+            display: inline-block;
+            font-size: 2rem;
+            color: var(--accent);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            from, 20%, 53%, 87% {
+                transform: translateY(0);
+            }
+            40%, 43% {
+                transform: translateY(-10px);
+            }
+            70%, 100% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .skill-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--btn-primary);
+            color: #0a0a0a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(97, 218, 251, 0.3);
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(97, 218, 251, 0.5);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+            gap: 1rem;
+        }
+        
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+        
+        .divider-dot {
+            color: var(--accent);
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
         }
     </style>
 </head>
@@ -166,16 +424,29 @@
                 <p>💡 Passionate about open source, performance, and clean UI.</p>
             </div>
         </header>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Adnanto A.R.</h1>
+            <p class="hero-subtitle">Linux Fanboy | Flutter Developer | Mobile Developer</p>
+            <p class="hero-description">Linux enthusiast, Flutter developer, and mobile apps craftsperson building cross-platform mobile experiences with Dart & Flutter.</p>
+            <div class="hero-buttons">
+                <a href="#connect" class="btn btn-primary">Let's Connect</a>
+                <a href="https://github.com/adahra" target="_blank" class="btn btn-secondary">View GitHub</a>
+            </div>
+        </div>
+    </section>
 
+    <div class="scroll-indicator">
+        <span class="scroll-arrow">↓</span>
+    </div>
         <section>
             <h2>Skills</h2>
             <ul>
-                <li>Flutter (Dart) – Cross‑platform mobile apps</li>
-                <li>Linux system administration & scripting</li>
-                <li>REST APIs & GraphQL integration</li>
-                <li>Git, CI/CD (GitHub Actions)</li>
-                <li>TypeScript/JavaScript (frontend tooling)</li>
-            </ul>
+                <li><span class="skill-icon">📱</span>Flutter (Dart) – Cross‑platform mobile apps</li>
+                <li><span class="skill-icon">🐧</span>Linux system administration & scripting</li>
+                <li><span class="skill-icon">🔌</span>REST APIs & GraphQL integration</li>
+                <li><span class="skill-icon">⚙️</span>Git, CI/CD (GitHub Actions)</li>
+                <li><span class="skill-icon">💻</span>TypeScript/JavaScript (frontend tooling)</li>
 
             <h2>Experience</h2>
             <p><strong>Flutter Developer</strong> (contract) — 2020‑2024<br>Built production‑grade Android/iOS apps, automated builds, and contributed to open source Flutter tools.</p>
@@ -190,11 +461,57 @@
             <p>GitHub: <a href="https://github.com/adahra" target="_blank">GitHub Profile</a></p>
             <p>Blog: <a href="https://adahra.github.io/posts/">Posts & Articles</a></p>
         </section>
-
+        
+        <div class="back-to-top" id="backToTop">↑</div>
+        
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-dot">✦</span>
+            <span class="divider-line"></span>
+        </div>
+        
         <footer>
             © 2024 Adnanto A.R. | Built with ❤️ using Hugo + TACHYONS
         </footer>
     </main>
+    
+    <script>
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('li, h2, p').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 
 </html>
